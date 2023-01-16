@@ -1,3 +1,7 @@
+# Products list from api
+
+This application allows to display a table of products from an external api. You can filter them by id using input.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

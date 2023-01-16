@@ -14,7 +14,6 @@ const FilterInput = () => {
       value={inputValue}
       onChange={(event) => handleChange(event)}
       type="text"
-      id={1}
     />
   );
 };

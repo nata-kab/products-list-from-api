@@ -1,0 +1,26 @@
+.table-container {
+  margin: 20px;
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  border: 1px solid;
+}
+.row-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+.table-cell-wrapper {
+  display: flex;
+  width: 33%;
+  border: 1px solid;
+  padding: 10px;
+  font-size: calc(5px + 1.5vh);
+}
+.table-title-cell-wrapper {
+  display: flex;
+  width: 33%;
+  border: 1px solid;
+  padding: 10px;
+  font-weight: bold;
+  font-size: calc(5px + 2vh);
+}
