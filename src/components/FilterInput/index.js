@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-const FilterInput = () => {
-  const [inputValue, setInputValue] = useState("");
-
+const FilterInput = ({ inputValue, setInputValue }) => {
   const handleChange = (event) => {
     const value = event.target.value.replace(/[^0-9]/g, "");
     setInputValue(value);

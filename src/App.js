@@ -1,15 +1,7 @@
-import React from "react";
-import FilterInput from "./components/FilterInput";
-import ProductsTable from "./components/ProductsTable";
+import MainPage from "./components/MainPage";
 
 function App() {
-  return (
-    <>
-      <h1>Products</h1>
-      <FilterInput />
-      <ProductsTable />
-    </>
-  );
+  return <MainPage />;
 }
 
 export default App;
