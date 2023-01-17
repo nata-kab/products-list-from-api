@@ -2,7 +2,7 @@ import React from "react";
 import "./Pagination.css";
 
 const Pagination = ({ selectedPage, setSelectedPage }) => {
-  const handleChange = (action) => {
+  const handleChangePage = (action) => {
     let pageNumber = selectedPage;
 
     switch (action) {
@@ -22,11 +22,11 @@ const Pagination = ({ selectedPage, setSelectedPage }) => {
   return (
     <div className="pagination">
       {selectedPage !== 1 && (
-        <button onClick={handleChange("previous")}>Previous</button>
+        <button onClick={() => handleChangePage("previous")}>Previous</button>
       )}
       <p className="page">{selectedPage}</p>
       {selectedPage !== 3 && (
-        <button onClick={handleChange("next")}>Next</button>
+        <button onClick={() => handleChangePage("next")}>Next</button>
       )}
     </div>
   );
