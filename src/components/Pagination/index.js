@@ -1,9 +1,12 @@
 import React from "react";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import "./Pagination.css";
 
 const Pagination = ({ selectedPage, setSelectedPage }) => {
+  let navigate = useNavigate();
   const handleChangePage = (action) => {
     let pageNumber = selectedPage;
+    // let navigate = useNavigate();
 
     switch (action) {
       case "next":
@@ -16,7 +19,7 @@ const Pagination = ({ selectedPage, setSelectedPage }) => {
         ++pageNumber;
     }
 
-    setSelectedPage(pageNumber);
+    navigate("/example");
   };
 
   return (
