@@ -1,12 +1,12 @@
-import React from "react";
-import FilterInput from "./components/FilterInput";
+import { Provider } from "react-redux";
+import store from "./store/store";
+import RouterComponent from "./components/Router";
 
 function App() {
   return (
-    <>
-      <h1>Products</h1>
-      <FilterInput />
-    </>
+    <Provider store={store}>
+      <RouterComponent />;
+    </Provider>
   );
 }
 
