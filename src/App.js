@@ -1,18 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MainPage from "./components/MainPage";
-import Error from "./components/Error";
-import ProductsTable from "./components/ProductsTable";
+import { Provider } from "react-redux";
+import store from "./store/store";
+import RouterComponent from "./components/Router";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />}>
-          <Route path="/:pageNumber/:productId?" element={<ProductsTable />} />
-        </Route>
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <RouterComponent />;
+    </Provider>
   );
 }
 

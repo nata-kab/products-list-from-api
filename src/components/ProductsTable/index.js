@@ -1,22 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  editApiProductsData,
+  addApiResponseStatus,
+  resetApiResponseStatus,
+} from "../../store/slices/apiDataSlice";
 import "./ProductsTable.css";
 
-const ProductsTable = ({ selectedId, selectedPageNumber, setApiError }) => {
-  const [products, setProducts] = useState([]);
+const ProductsTable = () => {
+  const dispatch = useDispatch();
+
+  const { products } = useSelector((state) => state.apiData);
+  const { selectedId, selectedPageNumber } = useSelector(
+    (state) => state.apiFilterParams
+  );
+
   const [productToShow, setProductToShow] = useState(null);
 
   const handleApiResponse = (response) => {
     !response.ok &&
-      setApiError({ status: response.status, statusText: response.statusText });
+      dispatch(
+        addApiResponseStatus({
+          statusNumber: response.status,
+          statusText: response.statusText,
+        })
+      );
   };
   const handleAPiDataResponse = (productsFromApi) => {
     if (productsFromApi === undefined) {
       return;
     } else {
-      setProducts(
-        Array.isArray(productsFromApi) ? productsFromApi : [productsFromApi]
-      );
+      const selectedProductsFromApi = Array.isArray(productsFromApi)
+        ? productsFromApi
+        : [productsFromApi];
+
+      dispatch(editApiProductsData(selectedProductsFromApi));
     }
   };
 
@@ -27,7 +45,6 @@ const ProductsTable = ({ selectedId, selectedPageNumber, setApiError }) => {
         : `?per_page=5&page=${selectedPageNumber}`;
     try {
       const apiResponse = await fetch("https://reqres.in/api/products" + query);
-      console.log(apiResponse);
 
       handleApiResponse(apiResponse);
 
@@ -41,7 +58,7 @@ const ProductsTable = ({ selectedId, selectedPageNumber, setApiError }) => {
   };
 
   useEffect(() => {
-    setApiError("");
+    dispatch(resetApiResponseStatus());
     getApiData();
   }, [selectedId, selectedPageNumber]);
 

@@ -1,9 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { editApiPageNumber } from "../../store/slices/apiFilterParamsSlice";
+
 import "./Pagination.css";
 
-const Pagination = ({ selectedPageNumber, setSelectedPageNumber }) => {
-  let navigate = useNavigate();
+const Pagination = () => {
+  const { selectedId, selectedPageNumber } = useSelector(
+    (state) => state.apiFilterParams
+  );
+  const dispatch = useDispatch();
+
   const handleChangePage = (action) => {
     let pageNumber = selectedPageNumber;
 
@@ -17,20 +23,25 @@ const Pagination = ({ selectedPageNumber, setSelectedPageNumber }) => {
       default:
         ++pageNumber;
     }
-    // navigate(`products/${pageNumber}`);
-    setSelectedPageNumber(pageNumber);
+    dispatch(editApiPageNumber(pageNumber));
   };
 
   return (
-    <div className="pagination">
-      {selectedPageNumber !== 1 && (
-        <button onClick={() => handleChangePage("previous")}>Previous</button>
+    <>
+      {selectedId === "" && (
+        <div className="pagination">
+          {selectedPageNumber !== 1 && (
+            <button onClick={() => handleChangePage("previous")}>
+              Previous
+            </button>
+          )}
+          <p className="page">{selectedPageNumber}</p>
+          {selectedPageNumber !== 3 && (
+            <button onClick={() => handleChangePage("next")}>Next</button>
+          )}
+        </div>
       )}
-      <p className="page">{selectedPageNumber}</p>
-      {selectedPageNumber !== 3 && (
-        <button onClick={() => handleChangePage("next")}>Next</button>
-      )}
-    </div>
+    </>
   );
 };
 export default Pagination;
