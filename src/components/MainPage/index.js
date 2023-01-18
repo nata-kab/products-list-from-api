@@ -6,8 +6,8 @@ import "./MainPage.css";
 import { useNavigate, useParams } from "react-router-dom";
 
 const MainPage = () => {
-  let { pageNumber } = useParams();
-  const [selectedId, setSelectedId] = useState("");
+  const { pageNumber, productId } = useParams();
+  const [selectedId, setSelectedId] = useState(productId ? productId : "");
   const [selectedPageNumber, setSelectedPageNumber] = useState(
     pageNumber ? pageNumber : 1
   );
@@ -16,8 +16,8 @@ const MainPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(`${selectedPageNumber}`);
-  }, [selectedPageNumber]);
+    navigate(`${selectedPageNumber}/${selectedId}`);
+  }, [selectedPageNumber, selectedId]);
 
   return (
     <div className="page-container">

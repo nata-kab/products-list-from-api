@@ -6,9 +6,6 @@ const ProductsTable = ({ selectedId, selectedPageNumber, setApiError }) => {
   const [products, setProducts] = useState([]);
   const [productToShow, setProductToShow] = useState(null);
 
-  let { page } = useParams();
-  console.log("table page", page);
-
   const handleApiResponse = (response) => {
     !response.ok &&
       setApiError({ status: response.status, statusText: response.statusText });
