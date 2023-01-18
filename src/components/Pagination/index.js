@@ -1,12 +1,11 @@
 import React from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Pagination.css";
 
-const Pagination = ({ selectedPage, setSelectedPage }) => {
+const Pagination = ({ selectedPageNumber, setSelectedPageNumber }) => {
   let navigate = useNavigate();
   const handleChangePage = (action) => {
-    let pageNumber = selectedPage;
-    // let navigate = useNavigate();
+    let pageNumber = selectedPageNumber;
 
     switch (action) {
       case "next":
@@ -18,17 +17,17 @@ const Pagination = ({ selectedPage, setSelectedPage }) => {
       default:
         ++pageNumber;
     }
-
-    navigate("/example");
+    // navigate(`products/${pageNumber}`);
+    setSelectedPageNumber(pageNumber);
   };
 
   return (
     <div className="pagination">
-      {selectedPage !== 1 && (
+      {selectedPageNumber !== 1 && (
         <button onClick={() => handleChangePage("previous")}>Previous</button>
       )}
-      <p className="page">{selectedPage}</p>
-      {selectedPage !== 3 && (
+      <p className="page">{selectedPageNumber}</p>
+      {selectedPageNumber !== 3 && (
         <button onClick={() => handleChangePage("next")}>Next</button>
       )}
     </div>
