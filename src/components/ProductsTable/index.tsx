@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   editApiProductsData,
   addApiResponseStatus,
   resetApiResponseStatus,
 } from "../../store/slices/apiDataSlice";
+import { RootState } from "../../store/store";
 import "./ProductsTable.css";
+import { ProductsDataPattern } from "../../store/slices/apiDataSlice";
 
-const ProductsTable = () => {
+const ProductsTable: FC = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.apiData);
+  const [productToShow, setProductToShow] = useState<ProductsDataPattern>(null);
+  const { products } = useSelector((state: RootState) => state.apiData);
 
   const { selectedId, selectedPageNumber } = useSelector(
-    (state) => state.apiFilterParams
+    (state: RootState) => state.apiFilterParams
   );
-
-  const [productToShow, setProductToShow] = useState(null);
 
   const handleApiResponse = (response) => {
     !response.ok &&
