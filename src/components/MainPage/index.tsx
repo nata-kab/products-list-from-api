@@ -1,14 +1,15 @@
-import React from "react";
 import "./MainPage.css";
+import { FC } from "react";
 import { useSelector } from "react-redux";
 import FilterInput from "../FilterInput";
 import Pagination from "../Pagination";
 import ProductsTable from "../ProductsTable";
 import useHandleProductRoute from "../../helpers/useHandleProductRoute";
+import { RootState } from "../../store/store";
 
-const MainPage = () => {
+const MainPage: FC = () => {
   const { apiErrorCode, apiResponseTextStatus } = useSelector(
-    (state) => state.apiData
+    (state: RootState) => state.apiData
   );
 
   useHandleProductRoute();

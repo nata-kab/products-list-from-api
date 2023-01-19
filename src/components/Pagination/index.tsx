@@ -1,17 +1,18 @@
-import React from "react";
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editApiPageNumber } from "../../store/slices/apiFilterParamsSlice";
+import { RootState } from "../../store/store";
 
 import "./Pagination.css";
 
-const Pagination = () => {
-  const { selectedId, selectedPageNumber } = useSelector(
-    (state) => state.apiFilterParams
-  );
+const Pagination: FC = () => {
   const dispatch = useDispatch();
+  const { selectedId, selectedPageNumber } = useSelector(
+    (state: RootState) => state.apiFilterParams
+  );
 
-  const handleChangePage = (action) => {
-    let pageNumber = selectedPageNumber;
+  const handleChangePage = (action: string) => {
+    let pageNumber: number = Number(selectedPageNumber);
 
     switch (action) {
       case "next":

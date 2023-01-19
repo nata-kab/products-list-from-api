@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addInitialApiFilterParams } from "../store/slices/apiFilterParamsSlice";
 import { useNavigate, useParams } from "react-router-dom";
+import { RootState } from "../store/store";
 
 const useHandleProductRoute = () => {
   const dispatch = useDispatch();
@@ -9,12 +10,12 @@ const useHandleProductRoute = () => {
   const { pageNumber, productId } = useParams();
 
   const { selectedId, selectedPageNumber } = useSelector(
-    (state) => state.apiFilterParams
+    (state: RootState) => state.apiFilterParams
   );
 
   useEffect(() => {
-    const page = pageNumber ? pageNumber : 1;
-    const id = productId ? productId : "";
+    const page: number | string = pageNumber ? pageNumber : 1;
+    const id: number | string = productId ? productId : "";
     dispatch(addInitialApiFilterParams({ id: id, pageNumber: page }));
   }, []);
 

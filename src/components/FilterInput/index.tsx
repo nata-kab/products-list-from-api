@@ -1,12 +1,15 @@
-import React from "react";
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSelectedId } from "../../store/slices/apiFilterParamsSlice";
+import { RootState } from "../../store/store";
 
-const FilterInput = () => {
+const FilterInput: FC = () => {
   const dispatch = useDispatch();
-  const { selectedId } = useSelector((state) => state.apiFilterParams);
+  const { selectedId } = useSelector(
+    (state: RootState) => state.apiFilterParams
+  );
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.replace(/[^0-9]/g, "");
     dispatch(addSelectedId(value));
   };
