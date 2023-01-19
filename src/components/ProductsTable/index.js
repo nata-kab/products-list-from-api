@@ -9,8 +9,8 @@ import "./ProductsTable.css";
 
 const ProductsTable = () => {
   const dispatch = useDispatch();
-
   const { products } = useSelector((state) => state.apiData);
+
   const { selectedId, selectedPageNumber } = useSelector(
     (state) => state.apiFilterParams
   );

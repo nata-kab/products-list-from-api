@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addSelectedId } from "../../store/slices/apiFilterParamsSlice";
 
 const FilterInput = () => {
-  const { selectedId } = useSelector((state) => state.apiFilterParams);
-
   const dispatch = useDispatch();
+  const { selectedId } = useSelector((state) => state.apiFilterParams);
 
   const handleChange = (event) => {
     const value = event.target.value.replace(/[^0-9]/g, "");

@@ -1,34 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addInitialApiFilterParams } from "../../store/slices/apiFilterParamsSlice";
+import React from "react";
+import "./MainPage.css";
+import { useSelector } from "react-redux";
 import FilterInput from "../FilterInput";
 import Pagination from "../Pagination";
 import ProductsTable from "../ProductsTable";
-import "./MainPage.css";
-import { useNavigate, useParams } from "react-router-dom";
+import useHandleProductRoute from "../../helpers/useHandleProductRoute";
 
 const MainPage = () => {
-  const dispatch = useDispatch();
-  const { pageNumber, productId } = useParams();
-
   const { apiErrorCode, apiResponseTextStatus } = useSelector(
     (state) => state.apiData
   );
-  const { selectedId, selectedPageNumber } = useSelector(
-    (state) => state.apiFilterParams
-  );
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const page = pageNumber ? pageNumber : 1;
-    const id = productId ? productId : "";
-    dispatch(addInitialApiFilterParams({ id: id, pageNumber: page }));
-  }, []);
-
-  useEffect(() => {
-    navigate(`${selectedPageNumber}/${selectedId}`);
-  }, [selectedPageNumber, selectedId]);
+  useHandleProductRoute();
 
   return (
     <div className="page-container">
