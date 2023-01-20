@@ -7,6 +7,7 @@ import "./Pagination.css";
 
 const Pagination: FC = () => {
   const dispatch = useDispatch();
+  const { totalPagesNumber } = useSelector((state: RootState) => state.apiData);
   const { selectedId, selectedPageNumber } = useSelector(
     (state: RootState) => state.apiFilterParams
   );
@@ -37,7 +38,7 @@ const Pagination: FC = () => {
             </button>
           )}
           <p className="page">{selectedPageNumber}</p>
-          {selectedPageNumber !== 3 && (
+          {selectedPageNumber !== totalPagesNumber && (
             <button onClick={() => handleChangePage("next")}>Next</button>
           )}
         </div>

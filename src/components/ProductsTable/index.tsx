@@ -1,70 +1,18 @@
-import { useState, useEffect } from "react";
-import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  editApiProductsData,
-  addApiResponseStatus,
-  resetApiResponseStatus,
-} from "../../store/slices/apiDataSlice";
-import { RootState } from "../../store/store";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
 import "./ProductsTable.css";
 import { ProductsDataPattern } from "../../store/slices/apiDataSlice";
+import { RootState } from "../../store/store";
+import useGetApiData from "../../helpers/useGetApiData";
 
-const ProductsTable: FC = () => {
-  const dispatch = useDispatch();
+const ProductsTable = () => {
   const [productToShow, setProductToShow] = useState<ProductsDataPattern>(null);
   const { products } = useSelector((state: RootState) => state.apiData);
 
-  const { selectedId, selectedPageNumber } = useSelector(
-    (state: RootState) => state.apiFilterParams
-  );
+  useGetApiData();
 
-  const handleApiResponse = (response) => {
-    !response.ok &&
-      dispatch(
-        addApiResponseStatus({
-          statusNumber: response.status,
-          statusText: response.statusText,
-        })
-      );
-  };
-  const handleAPiDataResponse = (productsFromApi) => {
-    if (productsFromApi === undefined) {
-      return;
-    } else {
-      const selectedProductsFromApi = Array.isArray(productsFromApi)
-        ? productsFromApi
-        : [productsFromApi];
-
-      dispatch(editApiProductsData(selectedProductsFromApi));
-    }
-  };
-
-  const getApiData = async () => {
-    const query =
-      selectedId !== ""
-        ? `?id=${selectedId}`
-        : `?per_page=5&page=${selectedPageNumber}`;
-    try {
-      const apiResponse = await fetch("https://reqres.in/api/products" + query);
-
-      handleApiResponse(apiResponse);
-
-      const apiResponseJSON = await apiResponse.json();
-
-      const productsFromApi = apiResponseJSON.data;
-      handleAPiDataResponse(productsFromApi);
-    } catch (e) {
-      console.log("Bad response from server", e);
-    }
-  };
-
-  useEffect(() => {
-    dispatch(resetApiResponseStatus());
-    getApiData();
-  }, [selectedId, selectedPageNumber]);
-
-  const handleOpenModal = (item) => {
+  const handleOpenModal = (item: ProductsDataPattern) => {
     setProductToShow(item);
   };
 

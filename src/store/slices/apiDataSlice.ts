@@ -8,16 +8,20 @@ export interface ProductsDataPattern {
   year: number;
 }
 
+// export interface ApiResponse {}
+
 export interface ApiDataState {
   products: ProductsDataPattern[];
   apiErrorCode: number | string;
   apiResponseTextStatus: string;
+  totalPagesNumber: number;
 }
 
 const initialState: ApiDataState = {
   products: [],
   apiErrorCode: "",
   apiResponseTextStatus: "",
+  totalPagesNumber: 3,
 };
 
 export const apiDataSlice = createSlice({
@@ -26,9 +30,13 @@ export const apiDataSlice = createSlice({
   reducers: {
     editApiProductsData: (
       state,
-      action: PayloadAction<ProductsDataPattern[]>
+      action: PayloadAction<{
+        selectedProducts: ProductsDataPattern[];
+        totalPagesNumber: number;
+      }>
     ) => {
-      state.products = action.payload;
+      state.products = action.payload.selectedProducts;
+      state.totalPagesNumber = action.payload.totalPagesNumber;
     },
     addApiResponseStatus: (
       state,
