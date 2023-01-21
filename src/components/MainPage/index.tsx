@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import FilterInput from "../FilterInput";
-import Pagination from "../Pagination";
 import ProductsTable from "../ProductsTable";
 import useHandleProductRoute from "../../helpers/useHandleProductRoute";
 import { RootState } from "../../store/store";
@@ -26,7 +25,6 @@ const MainPage: FC = () => {
         )}
       </Styled.InputContainer>
       <ProductsTable />
-      <Pagination />
     </Styled.MainPage>
   );
 };

@@ -1,10 +1,9 @@
-import { FC, Dispatch, SetStateAction } from "react";
+import { FC, Dispatch, SetStateAction, MutableRefObject } from "react";
 
 import { ProductsDataPattern } from "../../store/slices/apiDataSlice";
 import * as Styled from "./ProductModal.styled";
 import { Modal, Box, Typography, Button } from "@mui/material";
 import productScheme from "../../helpers/ProductScheme";
-import { MutableRefObject } from "react";
 
 interface ProductModalProps {
   isProductModalOpen: boolean;
@@ -25,28 +24,27 @@ const ProductModal: FC<ProductModalProps> = ({
     setIsProductModalOpen(!isProductModalOpen);
   };
 
-  const buttonStyle = {
-    backgroundColor: "white",
-    color: chosenProductDataRef.current.color,
-  };
-
   return (
     <Modal
       open={isProductModalOpen}
       onClose={handleCloseModal}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
+      aria-labelledby="modal-chosen-product-modal"
+      aria-describedby="modal-contains-chosen-products-details"
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "#202020",
+      }}
     >
       <Box
         sx={{
           width: 500,
           height: 500,
-          backgroundColor: chosenProductDataRef.current.color,
+          backgroundColor: "#ffffff",
           borderRadius: 10,
-          "&:hover": {
-            backgroundColor: chosenProductDataRef.current.color,
-            opacity: [0.9, 0.8, 0.9],
-          },
         }}
       >
         {chosenProductDataRef.current && (
@@ -72,7 +70,10 @@ const ProductModal: FC<ProductModalProps> = ({
               <Button
                 onClick={handleCloseModal}
                 variant="contained"
-                style={buttonStyle}
+                style={{
+                  backgroundColor: chosenProductDataRef.current.color,
+                  color: "#202020",
+                }}
                 disableElevation
               >
                 Close

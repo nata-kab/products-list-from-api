@@ -7,6 +7,7 @@ import useGetApiData from "../../helpers/useGetApiData";
 import * as Styled from "./ProductsTable.styled";
 import ProductModal from "../ProductModal";
 import productScheme from "../../helpers/ProductScheme";
+import TablePagination from "../TablePagination";
 
 const ProductsTable = () => {
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
@@ -23,7 +24,7 @@ const ProductsTable = () => {
   };
 
   return (
-    <>
+    <Styled.ProductsTableContainer>
       <ProductModal
         isProductModalOpen={isProductModalOpen}
         setIsProductModalOpen={setIsProductModalOpen}
@@ -57,7 +58,8 @@ const ProductsTable = () => {
             })}
         </Styled.TableBody>
       </Styled.Table>
-    </>
+      <TablePagination />
+    </Styled.ProductsTableContainer>
   );
 };
 export default ProductsTable;

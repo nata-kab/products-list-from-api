@@ -14,7 +14,7 @@ const useHandleProductRoute = () => {
   );
 
   useEffect(() => {
-    const page: number | string = pageNumber ? pageNumber : 1;
+    const page: number = pageNumber ? Number(pageNumber) : 1;
     const id: number | string = productId ? productId : "";
     dispatch(addInitialApiFilterParams({ id: id, pageNumber: page }));
   }, []);

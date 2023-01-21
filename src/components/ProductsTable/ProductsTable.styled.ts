@@ -6,16 +6,19 @@ type RowColor = {
 
 export const ProductsTableContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
 export const Table = styled.table`
+  display: flex;
+  flex-direction: column;
   width: 80%;
   margin: 20px 0;
 `;
 
-export const TableRow = styled.table<RowColor>`
+export const TableRow = styled.tr<RowColor>`
   display: flex;
   flex-direction: row;
   background-color: ${({ rowColor }) => rowColor};
@@ -51,10 +54,16 @@ export const TableCell = styled.td`
 export const TableHead = styled.thead`
   display: flex;
 `;
-export const TableBody = styled.tbody``;
+export const TableBody = styled.tbody`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const TableTitle = styled.th`
+  display: inline-flex;
   color: gray;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const TableHeadRow = styled.tr`
