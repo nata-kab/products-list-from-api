@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSelectedId } from "../../store/slices/apiFilterParamsSlice";
 import { RootState } from "../../store/store";
+import * as Styled from "./FilterInput.styled";
 
 const FilterInput: FC = () => {
   const dispatch = useDispatch();
@@ -15,11 +16,12 @@ const FilterInput: FC = () => {
   };
 
   return (
-    <input
-      placeholder="Search by id"
+    <Styled.Input
+      placeholder="Search product by id"
       value={selectedId}
       onChange={(event) => handleChange(event)}
       type="text"
+      status="active"
     />
   );
 };
