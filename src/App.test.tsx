@@ -1,21 +1,10 @@
-import { screen } from "@testing-library/react";
-import { renderWithProviders } from "./test-utils";
-
+import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test.todo("renders table title");
+test("renders the landing page", () => {
+  render(<App />);
 
-// test.todo("renders table title", () => {
-//   renderWithProviders(<App />);
-//   const tableTitle = screen.getByText(/Colors from api/i);
-//   expect(tableTitle).toBeInTheDocument();
-// });
-
-// import { screen } from "@testing-library/react";
-
-// test("renders learn react link", () => {
-//   test("renders learn react link", () => {
-//     renderWithProviders(<App />);
-//     const linkElement = screen.getByText(/learn react/i);
-//     expect(linkElement).toBeInTheDocument();
-//   });
+  expect(screen.getByRole("textbox")).toBeInTheDocument();
+  expect(screen.getByRole("table")).toBeInTheDocument();
+  expect(screen.getByRole("list")).toBeInTheDocument();
+});
