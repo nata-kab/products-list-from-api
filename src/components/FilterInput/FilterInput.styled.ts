@@ -8,7 +8,7 @@ export const Input = styled.input<InputProps>`
   line-height: 28px;
   width: 200px;
   padding: 10px;
-  margin: 20px 0;
+  margin: 20px auto;
   background: #ffffff;
   border: 3px solid #3457d5;
   border-radius: 15px;
@@ -17,11 +17,7 @@ export const Input = styled.input<InputProps>`
     color: #696969;
   }
   &:focus {
-    border: 1px solid #bebebe;
-    outline: 4px solid #dcdcdc;
-  }
-  &:active {
-    border: 1px solid #696969;
+    border: 3px solid #bebebe;
   }
   &:hover {
     border-color: #696969;

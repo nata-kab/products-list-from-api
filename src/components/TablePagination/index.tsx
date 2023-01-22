@@ -4,8 +4,6 @@ import { editApiPageNumber } from "../../store/slices/apiFilterParamsSlice";
 import { RootState } from "../../store/store";
 import { Pagination } from "@mui/material";
 
-import "./Pagination.css";
-
 const TablePagination: FC = () => {
   const dispatch = useDispatch();
   const { totalPagesNumber } = useSelector((state: RootState) => state.apiData);

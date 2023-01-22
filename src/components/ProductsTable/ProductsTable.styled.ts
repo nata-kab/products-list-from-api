@@ -1,7 +1,11 @@
 import styled from "@emotion/styled";
+import { darken } from "@mui/material";
 
 type RowColor = {
   rowColor: string;
+};
+type CellProperties = {
+  cellWidth: number;
 };
 
 export const ProductsTableContainer = styled.div`
@@ -12,62 +16,40 @@ export const ProductsTableContainer = styled.div`
 `;
 
 export const Table = styled.table`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  margin: 20px 0;
+  width: 90%;
+  max-width: 700px;
+  margin: 30px 0;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
 `;
 
 export const TableRow = styled.tr<RowColor>`
-  display: flex;
-  flex-direction: row;
   background-color: ${({ rowColor }) => rowColor};
-  width: 100%;
+  cursor: pointer;
+
   :hover {
-    cursor: pointer;
+    background-color: ${({ rowColor }) => darken(rowColor, 0.2)};
   }
 `;
 
-export const TitleRow = styled.tr`
-  display: flex;
-  flex-direction: row;
-  background-color: aliceblue;
-  width: 100%;
+export const TableCell = styled.td<CellProperties>`
+  width: ${({ cellWidth }) => `${cellWidth}%`};
+  border: none;
+  padding: 15px 10px;
+  text-align: center;
 `;
-
-export const TitleCell = styled.td`
-  display: flex;
-  flex-direction: row;
-  width: 33%;
-  border: 1px solid;
-  padding: 10px;
-  font-weight: bold;
-  font-size: calc(5px + 2vh);
-`;
-export const TableCell = styled.td`
-  display: flex;
-  width: 33%;
-  border: 1px solid;
-  padding: 10px;
-  font-size: calc(5px + 1.5vh);
-`;
-export const TableHead = styled.thead`
-  display: flex;
-`;
+export const TableHead = styled.thead``;
 export const TableBody = styled.tbody`
-  display: flex;
   flex-direction: column;
 `;
 
-export const TableTitle = styled.th`
-  display: inline-flex;
-  color: gray;
-  align-items: center;
-  justify-content: center;
+export const TableTitle = styled.th<CellProperties>`
+  color: dimgray;
+  width: ${({ cellWidth }) => `${cellWidth}%`};
+  padding: 15px 10px;
+  background-color: #d4d4d4;
+  text-align: center;
 `;
 
-export const TableHeadRow = styled.tr`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+export const TableHeadRow = styled.tr``;

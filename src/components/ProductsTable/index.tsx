@@ -33,15 +33,12 @@ const ProductsTable = () => {
       <Styled.Table>
         <Styled.TableHead>
           <Styled.TableHeadRow>
-            <Styled.TableTitle>Colors from api</Styled.TableTitle>
+            <Styled.TableTitle cellWidth={10}>Id</Styled.TableTitle>
+            <Styled.TableTitle cellWidth={45}>Name</Styled.TableTitle>
+            <Styled.TableTitle cellWidth={45}>Year</Styled.TableTitle>
           </Styled.TableHeadRow>
         </Styled.TableHead>
         <Styled.TableBody>
-          <Styled.TitleRow>
-            <Styled.TitleCell>Id</Styled.TitleCell>
-            <Styled.TitleCell>Name</Styled.TitleCell>
-            <Styled.TitleCell>Year</Styled.TitleCell>
-          </Styled.TitleRow>
           {products &&
             products.map((item, index) => {
               return (
@@ -50,9 +47,13 @@ const ProductsTable = () => {
                   key={index + item.name}
                   rowColor={item.color}
                 >
-                  <Styled.TableCell>{item.id}</Styled.TableCell>
-                  <Styled.TableCell>{item.name}</Styled.TableCell>
-                  <Styled.TableCell>{item.year}</Styled.TableCell>
+                  <Styled.TableCell cellWidth={10}>{item.id}</Styled.TableCell>
+                  <Styled.TableCell cellWidth={45}>
+                    {item.name}
+                  </Styled.TableCell>
+                  <Styled.TableCell cellWidth={45}>
+                    {item.year}
+                  </Styled.TableCell>
                 </Styled.TableRow>
               );
             })}

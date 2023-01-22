@@ -17,6 +17,7 @@ const FilterInput: FC = () => {
 
   return (
     <Styled.Input
+      name="idInput"
       placeholder="Search product by id"
       value={selectedId}
       onChange={(event) => handleChange(event)}

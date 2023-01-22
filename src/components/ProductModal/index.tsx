@@ -36,36 +36,34 @@ const ProductModal: FC<ProductModalProps> = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "#202020",
+        backgroundColor: "rgba(0,0,0, 0.4)",
       }}
     >
       <Box
         sx={{
-          width: 500,
-          height: 500,
+          position: "relative",
+          top: "-5%",
+          padding: "60px 150px",
           backgroundColor: "#ffffff",
-          borderRadius: 10,
+          borderRadius: "10px",
         }}
       >
         {chosenProductDataRef.current && (
           <>
             <Styled.Product>
-              <Styled.ProductTitle>
-                <p>Name: {chosenProductDataRef.current.name}</p>
-              </Styled.ProductTitle>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <Typography variant="h4">
+                Name: {chosenProductDataRef.current.name}
+              </Typography>
+
+              <Typography sx={{ mt: 2 }}>
                 Id: {chosenProductDataRef.current.id}
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <p>Year: {chosenProductDataRef.current.year}</p>
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <p>Color: {chosenProductDataRef.current.color}</p>
+              <Typography>Year: {chosenProductDataRef.current.year}</Typography>
+              <Typography>
+                Color: {chosenProductDataRef.current.color}
               </Typography>
               <Typography>
-                <p>
-                  Pantone value: {chosenProductDataRef.current.pantone_value}
-                </p>
+                Pantone value: {chosenProductDataRef.current.pantone_value}
               </Typography>
               <Button
                 onClick={handleCloseModal}
@@ -73,6 +71,7 @@ const ProductModal: FC<ProductModalProps> = ({
                 style={{
                   backgroundColor: chosenProductDataRef.current.color,
                   color: "#202020",
+                  marginTop: "30px",
                 }}
                 disableElevation
               >
