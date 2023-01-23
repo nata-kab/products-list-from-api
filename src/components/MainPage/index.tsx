@@ -27,7 +27,7 @@ const MainPage: FC = () => {
             alignSelf: "center",
           }}
         >
-          Bad server response. {apiResponseTextStatus} Error code:
+          Bad server response. {apiResponseTextStatus}.&nbsp; Error code:&nbsp;
           {apiErrorCode}
         </Alert>
       )}

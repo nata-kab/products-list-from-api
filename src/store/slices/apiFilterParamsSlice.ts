@@ -5,7 +5,7 @@ export interface ApiFilterParamsState {
   selectedPageNumber: number;
 }
 
-const initialState: ApiFilterParamsState = {
+export const initialState: ApiFilterParamsState = {
   selectedId: "",
   selectedPageNumber: 1,
 };
@@ -14,7 +14,7 @@ export const apiFilterParamsSlice = createSlice({
   name: "apiFilterParams",
   initialState,
   reducers: {
-    addInitialApiFilterParams: (
+    addApiFilterParams: (
       state,
       action: PayloadAction<{
         pageNumber: number;
@@ -40,7 +40,7 @@ export const {
   editApiPageNumber,
   addSelectedId,
   removeSelectedId,
-  addInitialApiFilterParams,
+  addApiFilterParams,
 } = apiFilterParamsSlice.actions;
 
 export default apiFilterParamsSlice.reducer;

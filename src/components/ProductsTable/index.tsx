@@ -40,11 +40,11 @@ const ProductsTable = () => {
         </Styled.TableHead>
         <Styled.TableBody>
           {products &&
-            products.map((item, index) => {
+            products.map((item) => {
               return (
                 <Styled.TableRow
                   onClick={() => handleOpenModal(item)}
-                  key={index + item.name}
+                  key={item.id}
                   rowColor={item.color}
                 >
                   <Styled.TableCell cellWidth={10}>{item.id}</Styled.TableCell>

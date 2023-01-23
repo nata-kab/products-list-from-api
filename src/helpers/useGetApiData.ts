@@ -77,7 +77,7 @@ const useGetApiData = () => {
 
       handleAPiDataResponse(productsFromApi, totalPagesNumber);
     } catch (error) {
-      console.log("Bad response from server", error);
+      throw error;
     }
   };
 

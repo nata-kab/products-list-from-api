@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addInitialApiFilterParams } from "../store/slices/apiFilterParamsSlice";
+import { addApiFilterParams } from "../store/slices/apiFilterParamsSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from "../store/store";
 
@@ -16,7 +16,7 @@ const useHandleProductRoute = () => {
   useEffect(() => {
     const page: number = pageNumber ? Number(pageNumber) : 1;
     const id: number | string = productId ? productId : "";
-    dispatch(addInitialApiFilterParams({ id: id, pageNumber: page }));
+    dispatch(addApiFilterParams({ id: id, pageNumber: page }));
   }, []);
 
   useEffect(() => {
