@@ -1,6 +1,11 @@
 # Products list from api
 
-This application allows to display a table of products from an external api. You can filter them by id using input.
+This application allows to display a table of products from an external api.
+
+- User can filter products by id using input which accepts only numbers.
+- After clicking on a table row a modal with all item data will be displayed.
+- Pagination and filtering are reflected in URL address.
+- User can copy and open the URL in different web browser.
 
 # 🚀 Getting started:
 
