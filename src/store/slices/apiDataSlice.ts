@@ -8,8 +8,6 @@ export interface ProductsDataPattern {
   year: number;
 }
 
-// export interface ApiResponse {}
-
 export interface ApiDataState {
   products: ProductsDataPattern[];
   apiErrorCode: number | string;
@@ -17,7 +15,7 @@ export interface ApiDataState {
   totalPagesNumber: number;
 }
 
-const initialState: ApiDataState = {
+export const initialState: ApiDataState = {
   products: [],
   apiErrorCode: "",
   apiResponseTextStatus: "",

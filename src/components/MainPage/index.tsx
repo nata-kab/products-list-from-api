@@ -1,11 +1,11 @@
-import "./MainPage.css";
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import FilterInput from "../FilterInput";
-import Pagination from "../Pagination";
 import ProductsTable from "../ProductsTable";
 import useHandleProductRoute from "../../helpers/useHandleProductRoute";
 import { RootState } from "../../store/store";
+import * as Styled from "./MainPage.styled";
+import { Alert } from "@mui/material";
 
 const MainPage: FC = () => {
   const { apiErrorCode, apiResponseTextStatus } = useSelector(
@@ -15,20 +15,25 @@ const MainPage: FC = () => {
   useHandleProductRoute();
 
   return (
-    <div className="page-container">
-      <h1>Products</h1>
-
+    <Styled.MainPage>
       {apiErrorCode && (
-        <p>
-          Bad server response. Error code:
-          {apiErrorCode} {apiResponseTextStatus}
-        </p>
+        <Alert
+          variant="filled"
+          severity="error"
+          sx={{
+            borderRadius: 5,
+            position: "absolute",
+            top: "125px",
+            alignSelf: "center",
+          }}
+        >
+          Bad server response. {apiResponseTextStatus}.&nbsp; Error code:&nbsp;
+          {apiErrorCode}
+        </Alert>
       )}
-
       <FilterInput />
       <ProductsTable />
-      <Pagination />
-    </div>
+    </Styled.MainPage>
   );
 };
 

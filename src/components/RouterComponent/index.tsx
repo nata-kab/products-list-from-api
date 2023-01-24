@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from "../MainPage";
-import Error from "../Error";
+import PageNotFound from "../PageNotFound";
 import ProductsTable from "../ProductsTable";
 
 const RouterComponent = () => {
@@ -8,9 +8,12 @@ const RouterComponent = () => {
     <Router>
       <Routes>
         <Route path="/" element={<MainPage />}>
-          <Route path="/:pageNumber/:productId?" element={<ProductsTable />} />
+          <Route
+            path="/products/:pageNumber/:productId?"
+            element={<ProductsTable />}
+          />
         </Route>
-        <Route path="*" element={<Error />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );

@@ -1,67 +1,66 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 
-import "./ProductsTable.css";
 import { ProductsDataPattern } from "../../store/slices/apiDataSlice";
 import { RootState } from "../../store/store";
 import useGetApiData from "../../helpers/useGetApiData";
+import * as Styled from "./ProductsTable.styled";
+import ProductModal from "../ProductModal";
+import productScheme from "../../helpers/ProductScheme";
+import TablePagination from "../TablePagination";
 
 const ProductsTable = () => {
-  const [productToShow, setProductToShow] = useState<ProductsDataPattern>(null);
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+
   const { products } = useSelector((state: RootState) => state.apiData);
+
+  const chosenProductDataRef = useRef<ProductsDataPattern>(productScheme);
 
   useGetApiData();
 
   const handleOpenModal = (item: ProductsDataPattern) => {
-    setProductToShow(item);
-  };
-
-  const handleCloseModal = () => {
-    setProductToShow(null);
+    chosenProductDataRef.current = item;
+    setIsProductModalOpen(true);
   };
 
   return (
-    <>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Products</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="table-title-row">
-            <td className="table-title-cell">Id</td>
-            <td className="table-title-cell">Name</td>
-            <td className="table-title-cell">Year</td>
-          </tr>
+    <Styled.ProductsTableContainer>
+      <ProductModal
+        isProductModalOpen={isProductModalOpen}
+        setIsProductModalOpen={setIsProductModalOpen}
+        chosenProductDataRef={chosenProductDataRef}
+      />
+      <Styled.Table>
+        <Styled.TableHead>
+          <Styled.TableHeadRow>
+            <Styled.TableTitle cellWidth={10}>Id</Styled.TableTitle>
+            <Styled.TableTitle cellWidth={45}>Name</Styled.TableTitle>
+            <Styled.TableTitle cellWidth={45}>Year</Styled.TableTitle>
+          </Styled.TableHeadRow>
+        </Styled.TableHead>
+        <Styled.TableBody>
           {products &&
-            products.map((item, index) => {
+            products.map((item) => {
               return (
-                <tr
-                  className="table-row"
+                <Styled.TableRow
                   onClick={() => handleOpenModal(item)}
-                  key={index + item.name}
+                  key={item.id}
+                  rowColor={item.color}
                 >
-                  <td className="table-cell">{item.id}</td>
-                  <td className="table-cell">{item.name}</td>
-                  <td className="table-cell">{item.year}</td>
-                </tr>
+                  <Styled.TableCell cellWidth={10}>{item.id}</Styled.TableCell>
+                  <Styled.TableCell cellWidth={45}>
+                    {item.name}
+                  </Styled.TableCell>
+                  <Styled.TableCell cellWidth={45}>
+                    {item.year}
+                  </Styled.TableCell>
+                </Styled.TableRow>
               );
             })}
-        </tbody>
-      </table>
-      {productToShow && (
-        <div className="product-container">
-          <p>Id: {productToShow.id} </p>
-
-          <p>Name: {productToShow.name}</p>
-          <p>Year: {productToShow.year}</p>
-          <p>Color: {productToShow.color}</p>
-          <p>Pantone value: {productToShow.pantone_value}</p>
-          <button onClick={handleCloseModal}>Close</button>
-        </div>
-      )}
-    </>
+        </Styled.TableBody>
+      </Styled.Table>
+      <TablePagination />
+    </Styled.ProductsTableContainer>
   );
 };
 export default ProductsTable;
