@@ -21,7 +21,7 @@ const useHandleProductRoute = () => {
 
   useEffect(() => {
     navigate(`products/${selectedPageNumber}/${selectedId}`);
-  }, [selectedPageNumber, selectedId]);
+  }, [selectedPageNumber, selectedId, productId]);
 };
 
 export default useHandleProductRoute;
