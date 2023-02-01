@@ -7,6 +7,8 @@ This application allows to display a table of products from an external api.
 - Pagination and filtering are reflected in URL address.
 - User can copy and open the URL in different web browser.
 
+![ts](https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555)
+
 # 🚀 Getting started:
 
 Clone the repo:
